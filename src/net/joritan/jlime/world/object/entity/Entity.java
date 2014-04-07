@@ -1,5 +1,6 @@
 package net.joritan.jlime.world.object.entity;
 
+import net.joritan.jlime.util.Vector2;
 import net.joritan.jlime.world.Environment;
 import net.joritan.jlime.world.object.entity.attribute.Bullet;
 import net.joritan.jlime.world.object.entity.segment.Segment;
@@ -11,6 +12,7 @@ import net.joritan.jlime.world.object.entity.segment.joint.SegmentJointType;
 import net.joritan.jlime.world.object.entity.segment.joint.SegmentJoint;
 import net.joritan.jlime.world.object.entity.segment.joint.builder.SegmentJointBuilder;
 import net.joritan.jlime.world.object.entity.segment.joint.builder.SegmentJointBuilderRevolute;
+import org.jbox2d.common.Vec2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,9 +36,12 @@ public abstract class Entity
         segmentJointBuilders[SegmentJointType.REVOLUTE.ordinal()] = new SegmentJointBuilderRevolute();
     }
 
-    private Environment environment;
+    protected final Environment environment;
+
     private Map<String, Segment> segments;
     private Map<String, SegmentJoint> joints;
+
+    private Segment centerSegment;
 
     public Entity(Environment environment)
     {
@@ -57,6 +62,66 @@ public abstract class Entity
     {
         joints.put(name, segmentJointBuilders[type.ordinal()].buildSegmentJoint(environment,
                 segments.get(aName), segments.get(bName), args));
+    }
+
+    public Segment getSegment(String name)
+    {
+        return segments.get(name);
+    }
+
+    public SegmentJoint getSegmentJoint(String name)
+    {
+        return joints.get(name);
+    }
+
+    public void setCenterSegment(String name)
+    {
+        this.centerSegment = segments.get(name);
+    }
+
+    public void setTransform(Vector2 position, float angle)
+    {
+        centerSegment.getBody().setTransform(new Vec2(position.x, position.y), angle);
+    }
+
+    public Vector2 getPosition()
+    {
+        return new Vector2(centerSegment.getBody().getPosition());
+    }
+
+    public void setPosition(Vector2 position)
+    {
+        setTransform(position, getAngle());
+    }
+
+    public float getAngle()
+    {
+        return centerSegment.getBody().getAngle();
+    }
+
+    public void setAngle(float angle)
+    {
+        setTransform(getPosition(), angle);
+    }
+
+    public Vector2 getLinearVelocity()
+    {
+        return new Vector2(centerSegment.getBody().getLinearVelocity());
+    }
+
+    public void setLinearVelocity(Vector2 velocity)
+    {
+        centerSegment.getBody().setLinearVelocity(new Vec2(velocity.x, velocity.y));
+    }
+
+    public float getAngularVelocity()
+    {
+        return centerSegment.getBody().getAngularVelocity();
+    }
+
+    public void setAngularVelocity(float velocity)
+    {
+        centerSegment.getBody().setAngularVelocity(velocity);
     }
 
     public void update(float timeDelta)

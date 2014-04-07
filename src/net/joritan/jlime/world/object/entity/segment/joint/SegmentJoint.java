@@ -1,6 +1,7 @@
 package net.joritan.jlime.world.object.entity.segment.joint;
 
 import org.jbox2d.dynamics.joints.Joint;
+import org.jbox2d.dynamics.joints.RevoluteJoint;
 
 public class SegmentJoint
 {
@@ -14,5 +15,19 @@ public class SegmentJoint
     public Joint getJoint()
     {
         return joint;
+    }
+
+    public float getMotorSpeed()
+    {
+        if(!(joint instanceof RevoluteJoint))
+            throw new UnsupportedOperationException();
+        return ((RevoluteJoint) joint).getMotorSpeed();
+    }
+
+    public void setMotorSpeed(float motorSpeed)
+    {
+        if(!(joint instanceof RevoluteJoint))
+            throw new UnsupportedOperationException();
+        ((RevoluteJoint) joint).setMotorSpeed(motorSpeed);
     }
 }

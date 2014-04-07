@@ -2,8 +2,6 @@ package net.joritan.jlime.world;
 
 import net.joritan.jlime.util.Input;
 import net.joritan.jlime.util.Texture;
-import net.joritan.jlime.world.object.Platform;
-import net.joritan.jlime.world.object.Player;
 import net.joritan.jlime.world.object.entity.Entity;
 import net.joritan.jlime.world.object.entity.TE1;
 import net.joritan.jlime.world.object.mask.Mask;
@@ -24,7 +22,6 @@ public class Environment
     public Camera camera;
 
     private Set<Mask> masks;
-    private Set<GameObject> objects;
     private Set<Entity> entities;
 
     public Environment()
@@ -34,12 +31,10 @@ public class Environment
 
         camera = new Camera(-65, -65, 65, 65);
         masks = new HashSet<Mask>();
-        objects = new HashSet<GameObject>();
         entities = new HashSet<Entity>();
 
         addEntity(new TE1(this));
 
-        addObject(new Player(this, 0, 10));
         TEMP_addPlatform(-10, -10, 10, -10);
         TEMP_addPlatform(-10, -10, -15, -9);
         TEMP_addPlatform(10, -10, 15, -9);
@@ -69,7 +64,6 @@ public class Environment
 
     private void TEMP_addPlatform(float x1, float y1, float x2, float y2)
     {
-        addObject(new Platform(this, x1, y1, x2, y2));
         addMask(new Mask(Texture.getTexture("dirt"),
                 new Vec2[] {new Vec2(x1, y1), new Vec2(x2, y2), new Vec2(x2, y2 - 50.0f), new Vec2(x1, y1 - 50.0f)},
                 new Vec2(0.0f, 0.0f), 0.0f));
@@ -83,16 +77,6 @@ public class Environment
     public void removeEntity(Entity entity)
     {
         entities.remove(entity);
-    }
-
-    public void addObject(GameObject object)
-    {
-        objects.add(object);
-    }
-
-    public void removeObject(GameObject object)
-    {
-        objects.remove(object);
     }
 
     public void addMask(Mask mask)
@@ -109,8 +93,6 @@ public class Environment
     {
         for(Entity entity : entities)
             entity.update(timeDelta);
-        for(GameObject object : objects)
-            object.update(timeDelta);
         for(Mask mask : masks)
             mask.update(timeDelta);
         Input.update();
@@ -124,12 +106,6 @@ public class Environment
         {
             glPushMatrix();
             entity.render();
-            glPopMatrix();
-        }
-        for(GameObject object : objects)
-        {
-            glPushMatrix();
-            object.render();
             glPopMatrix();
         }
         for(Mask mask : masks)

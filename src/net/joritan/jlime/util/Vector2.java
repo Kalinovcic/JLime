@@ -1,5 +1,7 @@
 package net.joritan.jlime.util;
 
+import org.jbox2d.common.Vec2;
+
 public class Vector2
 {
     public float x;
@@ -19,6 +21,12 @@ public class Vector2
     {
         this.x = x;
         this.y = y;
+    }
+
+    public Vector2(Vec2 v)
+    {
+        x = v.x;
+        y = v.y;
     }
 
     public static Vector2 add(Vector2 v1, float v2)

@@ -12,9 +12,8 @@ import org.jbox2d.dynamics.FixtureDef;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.glPopMatrix;
 
-public class SegmentCircle implements Segment
+public class SegmentCircle extends Segment
 {
-    private Body body;
     private BodyDef bodyDef;
     private CircleShape shape;
     private FixtureDef fixture;
@@ -50,12 +49,6 @@ public class SegmentCircle implements Segment
         }
         else
             throw new IllegalArgumentException();
-    }
-
-    @Override
-    public Body getBody()
-    {
-        return body;
     }
 
     @Override
