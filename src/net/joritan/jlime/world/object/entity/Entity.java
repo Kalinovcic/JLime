@@ -48,20 +48,15 @@ public abstract class Entity
     protected void addSegment(String name, SegmentType type, Object... args)
     {
         segments.put(name, segmentBuilders[type.ordinal()].buildSegment(environment, args));
+        segments.get(name).getBody().setUserData(this);
         if (this instanceof Bullet)
             segments.get(name).getBody().setBullet(true);
     }
 
     protected void addSegmentJoint(String name, String aName, String bName, SegmentJointType type, Object... args)
     {
-        switch(type)
-        {
-            case REVOLUTE:
-                joints.put(name, SegmentJointRevolute.buildRevoluteJoint(environment, segments.get(aName), segments.get(bName), args));
-                break;
-            default:
-                throw new IllegalArgumentException();
-        }
+        joints.put(name, segmentJointBuilders[type.ordinal()].buildSegmentJoint(environment,
+                segments.get(aName), segments.get(bName), args));
     }
 
     public void update(float timeDelta)
