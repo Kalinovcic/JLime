@@ -1,41 +1,80 @@
 package net.joritan.jlime.world.object.entity;
 
 import net.joritan.jlime.world.Environment;
+import net.joritan.jlime.world.object.entity.attribute.Bullet;
+import net.joritan.jlime.world.object.entity.segment.Segment;
+import net.joritan.jlime.world.object.entity.segment.SegmentType;
+import net.joritan.jlime.world.object.entity.segment.builder.SegmentBuilder;
+import net.joritan.jlime.world.object.entity.segment.builder.SegmentBuilderCircle;
+import net.joritan.jlime.world.object.entity.segment.builder.SegmentBuilderPolygon;
+import net.joritan.jlime.world.object.entity.segment.joint.SegmentJointType;
+import net.joritan.jlime.world.object.entity.segment.joint.SegmentJoint;
+import net.joritan.jlime.world.object.entity.segment.joint.builder.SegmentJointBuilder;
+import net.joritan.jlime.world.object.entity.segment.joint.builder.SegmentJointBuilderRevolute;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class Entity
+public abstract class Entity
 {
+    private static final SegmentBuilder[] segmentBuilders;
+    static
+    {
+        segmentBuilders = new SegmentBuilder[SegmentType.values().length];
+        segmentBuilders[SegmentType.POLYGON.ordinal()] = new SegmentBuilderPolygon();
+        segmentBuilders[SegmentType.CIRCLE.ordinal()] = new SegmentBuilderCircle();
+    }
+
+    private static final SegmentJointBuilder[] segmentJointBuilders;
+    static
+    {
+        segmentJointBuilders = new SegmentJointBuilder[SegmentJointType.values().length];
+        segmentJointBuilders[SegmentJointType.REVOLUTE.ordinal()] = new SegmentJointBuilderRevolute();
+    }
+
     private Environment environment;
     private Map<String, Segment> segments;
+    private Map<String, SegmentJoint> joints;
 
     public Entity(Environment environment)
     {
         this.environment = environment;
         segments = new HashMap<String, Segment>();
-    }
-
-    protected void setBullet(boolean flag)
-    {
-
+        joints = new HashMap<String, SegmentJoint>();
     }
 
     protected void addSegment(String name, SegmentType type, Object... args)
     {
+        segments.put(name, segmentBuilders[type.ordinal()].buildSegment(environment, args));
+        if (this instanceof Bullet)
+            segments.get(name).getBody().setBullet(true);
+    }
+
+    protected void addSegmentJoint(String name, String aName, String bName, SegmentJointType type, Object... args)
+    {
         switch(type)
         {
-        case POLYGON:
-            segments.put(name, new SegmentPolygon(environment, args));
-            break;
-        case CIRCLE:
-            segments.put(name, new SegmentCircle(environment, args));
-            break;
+            case REVOLUTE:
+                joints.put(name, SegmentJointRevolute.buildRevoluteJoint(environment, segments.get(aName), segments.get(bName), args));
+                break;
+            default:
+                throw new IllegalArgumentException();
         }
     }
 
-    protected void addJoint(String name, String aName, String bName, ConnectionType type, Object... args)
+    public void update(float timeDelta)
     {
+        List<Segment> segmentList = new ArrayList<Segment>(segments.values());
+        for(Segment segment : segmentList)
+            segment.update(timeDelta);
+    }
 
+    public void render()
+    {
+        List<Segment> segmentList = new ArrayList<Segment>(segments.values());
+        for(Segment segment : segmentList)
+            segment.render();
     }
 }

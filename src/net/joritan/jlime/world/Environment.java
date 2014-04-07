@@ -4,6 +4,8 @@ import net.joritan.jlime.util.Input;
 import net.joritan.jlime.util.Texture;
 import net.joritan.jlime.world.object.Platform;
 import net.joritan.jlime.world.object.Player;
+import net.joritan.jlime.world.object.entity.Entity;
+import net.joritan.jlime.world.object.entity.TE1;
 import net.joritan.jlime.world.object.mask.Mask;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
@@ -23,6 +25,7 @@ public class Environment
 
     private Set<Mask> masks;
     private Set<GameObject> objects;
+    private Set<Entity> entities;
 
     public Environment()
     {
@@ -30,8 +33,11 @@ public class Environment
         world.setSleepingAllowed(true);
 
         camera = new Camera(-65, -65, 65, 65);
-        objects = new HashSet<GameObject>();
         masks = new HashSet<Mask>();
+        objects = new HashSet<GameObject>();
+        entities = new HashSet<Entity>();
+
+        addEntity(new TE1(this));
 
         addObject(new Player(this, 0, 10));
         TEMP_addPlatform(-10, -10, 10, -10);
@@ -69,6 +75,16 @@ public class Environment
                 new Vec2(0.0f, 0.0f), 0.0f));
     }
 
+    public void addEntity(Entity entity)
+    {
+        entities.add(entity);
+    }
+
+    public void removeEntity(Entity entity)
+    {
+        entities.remove(entity);
+    }
+
     public void addObject(GameObject object)
     {
         objects.add(object);
@@ -91,6 +107,8 @@ public class Environment
 
     public void update(float timeDelta)
     {
+        for(Entity entity : entities)
+            entity.update(timeDelta);
         for(GameObject object : objects)
             object.update(timeDelta);
         for(Mask mask : masks)
@@ -102,6 +120,12 @@ public class Environment
     public void render()
     {
         camera.moveCamera();
+        for (Entity entity : entities)
+        {
+            glPushMatrix();
+            entity.render();
+            glPopMatrix();
+        }
         for(GameObject object : objects)
         {
             glPushMatrix();

@@ -44,9 +44,6 @@ public class JLimeStart
         Timer timer = new Timer();
         timer.reset();
 
-        TE1 te1 = new TE1();
-        TE2 te2 = new TE2();
-
         int frames = 0;
         long t1 = System.currentTimeMillis();
         while(!Display.isCloseRequested())

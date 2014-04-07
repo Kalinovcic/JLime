@@ -1,6 +1,5 @@
 package net.joritan.jlime.util;
 
-import org.jbox2d.common.Vec2;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
@@ -181,12 +180,12 @@ public class Input
         return !getMouse(mouseButton) && lastMouse[mouseButton];
     }
 
-    public static Vec2 getMousePosition()
+    public static Vector2 getMousePosition()
     {
-        return new Vec2(Mouse.getX(), Mouse.getY());
+        return new Vector2(Mouse.getX(), Mouse.getY());
     }
 
-    public static void setMousePosition(Vec2 pos)
+    public static void setMousePosition(Vector2 pos)
     {
         Mouse.setCursorPosition((int) pos.x, (int) pos.y);
     }

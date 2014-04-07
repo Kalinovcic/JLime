@@ -2,13 +2,15 @@ package net.joritan.jlime.world.object.entity;
 
 import net.joritan.jlime.util.Vector2;
 import net.joritan.jlime.world.Environment;
+import net.joritan.jlime.world.object.entity.attribute.Bullet;
+import net.joritan.jlime.world.object.entity.segment.SegmentType;
+import net.joritan.jlime.world.object.entity.segment.joint.SegmentJointType;
 
-public class TE1 extends Entity
+public class TE1 extends Entity implements Bullet
 {
     public TE1(Environment environment)
     {
         super(environment);
-        setBullet(true);
 
         addSegment("polygon", SegmentType.POLYGON, new Vector2[]
                 {
@@ -16,9 +18,8 @@ public class TE1 extends Entity
                         new Vector2(0, 1),
                         new Vector2(1, 1),
                         new Vector2(1, 0)
-                });
-        addSegment("circle", SegmentType.CIRCLE, 0.5f);
-
-        addJoint("joint1", "polygon", "circle", ConnectionType.REVOLUTE, new Vector2(0.5f, 0.0f), new Vector2(0.0f, 0.0f));
+                }, 1.0f, 0.3f, 0.0f);
+        addSegment("circle", SegmentType.CIRCLE, 0.5f, 1.0f, 0.3f, 0.0f);
+        addSegmentJoint("joint1", "polygon", "circle", SegmentJointType.REVOLUTE, new Vector2(0.5f, 0.0f), new Vector2(0.0f, 0.0f));
     }
 }
