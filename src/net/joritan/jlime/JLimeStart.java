@@ -1,18 +1,17 @@
 package net.joritan.jlime;
 
+import net.joritan.jlime.util.Texture;
 import net.joritan.jlime.util.Timer;
-import net.joritan.jlime.util.Vector2;
-import net.joritan.jlime.world.World;
-import net.joritan.jlime.world.entity.Player;
-import net.joritan.jlime.world.platform.BasicPlatform;
-import net.joritan.jlime.world.platform.Platform;
+import net.joritan.jlime.world.Environment;
+import net.joritan.jlime.world.object.entity.TE1;
+import net.joritan.jlime.world.object.entity.TE2;
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.World;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
-
-import java.util.Random;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -29,12 +28,6 @@ public class JLimeStart
             Display.create();
             Keyboard.create();
             Mouse.create();
-
-            glMatrixMode(GL_PROJECTION);
-            glLoadIdentity();
-
-            glMatrixMode(GL_MODELVIEW);
-            //glEnable(GL_TEXTURE_2D);
         }
         catch(LWJGLException e)
         {
@@ -42,15 +35,17 @@ public class JLimeStart
         }
     }
 
-    public static void setupWorld(World world)
-    {
-    }
-
     public static void run()
     {
+        Texture.addTexture("dirt", new Texture("res/dirt2.png"));
+
+        Environment environment = new Environment();
 
         Timer timer = new Timer();
         timer.reset();
+
+        TE1 te1 = new TE1();
+        TE2 te2 = new TE2();
 
         int frames = 0;
         long t1 = System.currentTimeMillis();
@@ -67,15 +62,18 @@ public class JLimeStart
             glLoadIdentity();
 
             float delta = timer.update();
-            world.update(delta);
-            world.render();
+            environment.update(delta);
+            environment.render();
 
             Display.update();
             //Display.sync(FPS);
             frames++;
         }
 
-        world.destroy();
+        environment.destroy();
+
+        Texture.getTexture("dirt").unload();
+        Texture.removeTexture("dirt");
     }
 
     public static void destroy()
