@@ -2,9 +2,11 @@ package net.joritan.jlime.world;
 
 import net.joritan.jlime.util.Input;
 import net.joritan.jlime.util.Texture;
-import net.joritan.jlime.world.object.entity.Entity;
-import net.joritan.jlime.world.object.entity.TE1;
-import net.joritan.jlime.world.object.mask.Mask;
+import net.joritan.jlime.world.gameobject.GameObject;
+import net.joritan.jlime.world.gameobject.entity.Entity;
+import net.joritan.jlime.world.gameobject.entity.TE1;
+import net.joritan.jlime.world.gameobject.terrain.Platform;
+import net.joritan.jlime.world.mask.Mask;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
@@ -21,8 +23,8 @@ public class Environment
     public final World world;
     public Camera camera;
 
+    private Set<GameObject> objects;
     private Set<Mask> masks;
-    private Set<Entity> entities;
 
     public Environment()
     {
@@ -30,10 +32,11 @@ public class Environment
         world.setSleepingAllowed(true);
 
         camera = new Camera(-65, -65, 65, 65);
-        masks = new HashSet<Mask>();
-        entities = new HashSet<Entity>();
 
-        addEntity(new TE1(this));
+        objects = new HashSet<GameObject>();
+        masks = new HashSet<Mask>();
+
+        addGameObject(new TE1(this));
 
         TEMP_addPlatform(-10, -10, 10, -10);
         TEMP_addPlatform(-10, -10, -15, -9);
@@ -64,19 +67,20 @@ public class Environment
 
     private void TEMP_addPlatform(float x1, float y1, float x2, float y2)
     {
+        addGameObject(new Platform(this, x1, y1, x2, y2));
         addMask(new Mask(Texture.getTexture("dirt"),
-                new Vec2[] {new Vec2(x1, y1), new Vec2(x2, y2), new Vec2(x2, y2 - 50.0f), new Vec2(x1, y1 - 50.0f)},
+                new Vec2[]{new Vec2(x1, y1), new Vec2(x2, y2), new Vec2(x2, y2 - 50.0f), new Vec2(x1, y1 - 50.0f)},
                 new Vec2(0.0f, 0.0f), 0.0f));
     }
 
-    public void addEntity(Entity entity)
+    public void addGameObject(GameObject object)
     {
-        entities.add(entity);
+        objects.add(object);
     }
 
-    public void removeEntity(Entity entity)
+    public void removeGameObject(GameObject object)
     {
-        entities.remove(entity);
+        objects.remove(object);
     }
 
     public void addMask(Mask mask)
@@ -91,8 +95,8 @@ public class Environment
 
     public void update(float timeDelta)
     {
-        for(Entity entity : entities)
-            entity.update(timeDelta);
+        for(GameObject object : objects)
+            object.update(timeDelta);
         for(Mask mask : masks)
             mask.update(timeDelta);
         Input.update();
@@ -102,10 +106,10 @@ public class Environment
     public void render()
     {
         camera.moveCamera();
-        for (Entity entity : entities)
+        for (GameObject object : objects)
         {
             glPushMatrix();
-            entity.render();
+            object.render();
             glPopMatrix();
         }
         for(Mask mask : masks)
