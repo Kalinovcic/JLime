@@ -2,11 +2,11 @@ package net.joritan.jlime.world;
 
 import net.joritan.jlime.util.Input;
 import net.joritan.jlime.util.Texture;
+import net.joritan.jlime.util.Vector2;
 import net.joritan.jlime.world.gameobject.GameObject;
-import net.joritan.jlime.world.gameobject.entity.Entity;
 import net.joritan.jlime.world.gameobject.entity.TE1;
 import net.joritan.jlime.world.gameobject.terrain.Platform;
-import net.joritan.jlime.world.mask.Mask;
+import net.joritan.jlime.world.gameobject.mask.Mask;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
@@ -62,15 +62,15 @@ public class Environment
         TEMP_addPlatform(-50, 24, -55, 32);
         TEMP_addPlatform(-55, 32, -60, 41);
         TEMP_addPlatform(-60, 41, -65, 51);
-        //TEMP_addPlatform(65, 51, -65, 51);
+        TEMP_addPlatform(65, 51, -65, 51);
     }
 
     private void TEMP_addPlatform(float x1, float y1, float x2, float y2)
     {
         addGameObject(new Platform(this, x1, y1, x2, y2));
         addMask(new Mask(Texture.getTexture("dirt"),
-                new Vec2[]{new Vec2(x1, y1), new Vec2(x2, y2), new Vec2(x2, y2 - 50.0f), new Vec2(x1, y1 - 50.0f)},
-                new Vec2(0.0f, 0.0f), 0.0f));
+                new Vector2[]{new Vector2(x1, y1), new Vector2(x2, y2), new Vector2(x2, y2 - 5.0f), new Vector2(x1, y1 - 5.0f)},
+                new Vector2(0.0f, 0.0f), 0.0f));
     }
 
     public void addGameObject(GameObject object)

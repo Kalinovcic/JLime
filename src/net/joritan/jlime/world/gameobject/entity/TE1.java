@@ -20,7 +20,7 @@ public class TE1 extends Entity
                         new Vector2(1, 1),
                         new Vector2(1, 0)
                 }, 1.0f, 0.3f, 0.0f);
-        addSegment("circle", SegmentType.CIRCLE, 0.5f, 1.0f, 0.3f, 0.0f);
+        addSegment("circle", SegmentType.CIRCLE, 0.5f, 1.0f, 0.3f, 0.5f);
         addSegmentJoint("motor", "polygon", "circle", SegmentJointType.REVOLUTE,
                 new Vector2(0.5f, 0.0f), new Vector2(0.0f, 0.0f), 100.0f);
 
