@@ -393,7 +393,7 @@ public class Body {
 
   /**
    * Get the linear velocity of the center of mass. Do not modify, instead use
-   * {@link #setLinearVelocity(Vec2)}.
+   * {@link #setLinearVelocity(org.jbox2d.common.Vec2)}.
    * 
    * @return the linear velocity of the center of mass.
    */

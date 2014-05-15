@@ -42,10 +42,10 @@ public class JLimeStart
 
         int frames = 0;
         long t1 = System.currentTimeMillis();
-        while(!Display.isCloseRequested())
+        while (!Display.isCloseRequested())
         {
             long t2 = System.currentTimeMillis();
-            if((t2 - t1) >= 1000)
+            if ((t2 - t1) >= 1000)
             {
                 System.out.println("FPS: " + frames);
                 frames = 0;

@@ -108,7 +108,8 @@ public class PolygonShape extends Shape {
    *          stacking behavior.
    */
   public final void set(final Vec2[] vertices, final int count) {
-    set(vertices, count, null, null);
+
+      set(vertices, count, null, null);
   }
 
   /**
@@ -157,6 +158,8 @@ public class PolygonShape extends Shape {
     int ih = i0;
 
     while (true) {
+        // TODO: this might be dangerous
+        if(m >= Settings.maxPolygonVertices) break;
       hull[m] = ih;
 
       int ie = 0;

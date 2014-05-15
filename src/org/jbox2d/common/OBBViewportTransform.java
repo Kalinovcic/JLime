@@ -53,7 +53,7 @@ public class OBBViewportTransform implements IViewportTransform {
   }
 
   /**
-   * @see IViewportTransform#setCamera(float, float, float)
+   * @see org.jbox2d.common.IViewportTransform#setCamera(float, float, float)
    */
   public void setCamera(float x, float y, float scale) {
     box.center.set(x, y);
@@ -61,42 +61,42 @@ public class OBBViewportTransform implements IViewportTransform {
   }
 
   /**
-   * @see IViewportTransform#getExtents()
+   * @see org.jbox2d.common.IViewportTransform#getExtents()
    */
   public Vec2 getExtents() {
     return box.extents;
   }
 
   /**
-   * @see IViewportTransform#setExtents(Vec2)
+   * @see org.jbox2d.common.IViewportTransform#setExtents(org.jbox2d.common.Vec2)
    */
   public void setExtents(Vec2 argExtents) {
     box.extents.set(argExtents);
   }
 
   /**
-   * @see IViewportTransform#setExtents(float, float)
+   * @see org.jbox2d.common.IViewportTransform#setExtents(float, float)
    */
   public void setExtents(float argHalfWidth, float argHalfHeight) {
     box.extents.set(argHalfWidth, argHalfHeight);
   }
 
   /**
-   * @see IViewportTransform#getCenter()
+   * @see org.jbox2d.common.IViewportTransform#getCenter()
    */
   public Vec2 getCenter() {
     return box.center;
   }
 
   /**
-   * @see IViewportTransform#setCenter(Vec2)
+   * @see org.jbox2d.common.IViewportTransform#setCenter(org.jbox2d.common.Vec2)
    */
   public void setCenter(Vec2 argPos) {
     box.center.set(argPos);
   }
 
   /**
-   * @see IViewportTransform#setCenter(float, float)
+   * @see org.jbox2d.common.IViewportTransform#setCenter(float, float)
    */
   public void setCenter(float x, float y) {
     box.center.set(x, y);
@@ -130,14 +130,14 @@ public class OBBViewportTransform implements IViewportTransform {
   }
 
   /**
-   * @see IViewportTransform#isYFlip()
+   * @see org.jbox2d.common.IViewportTransform#isYFlip()
    */
   public boolean isYFlip() {
     return yFlip;
   }
 
   /**
-   * @see IViewportTransform#setYFlip(boolean)
+   * @see org.jbox2d.common.IViewportTransform#setYFlip(boolean)
    */
   public void setYFlip(boolean yFlip) {
     this.yFlip = yFlip;
@@ -147,7 +147,7 @@ public class OBBViewportTransform implements IViewportTransform {
   private final Mat22 inv = new Mat22();
 
   /**
-   * @see IViewportTransform#getScreenVectorToWorld(Vec2, Vec2)
+   * @see org.jbox2d.common.IViewportTransform#getScreenVectorToWorld(org.jbox2d.common.Vec2, org.jbox2d.common.Vec2)
    */
   public void getScreenVectorToWorld(Vec2 argScreen, Vec2 argWorld) {
     inv.set(box.R);
@@ -159,7 +159,7 @@ public class OBBViewportTransform implements IViewportTransform {
   }
 
   /**
-   * @see IViewportTransform#getWorldVectorToScreen(Vec2, Vec2)
+   * @see org.jbox2d.common.IViewportTransform#getWorldVectorToScreen(org.jbox2d.common.Vec2, org.jbox2d.common.Vec2)
    */
   public void getWorldVectorToScreen(Vec2 argWorld, Vec2 argScreen) {
     box.R.mulToOut(argWorld, argScreen);
@@ -182,7 +182,7 @@ public class OBBViewportTransform implements IViewportTransform {
   private final Mat22 inv2 = new Mat22();
 
   /**
-   * @see IViewportTransform#getScreenToWorld(Vec2, Vec2)
+   * @see org.jbox2d.common.IViewportTransform#getScreenToWorld(org.jbox2d.common.Vec2, org.jbox2d.common.Vec2)
    */
   public void getScreenToWorld(Vec2 argScreen, Vec2 argWorld) {
     argWorld.set(argScreen);

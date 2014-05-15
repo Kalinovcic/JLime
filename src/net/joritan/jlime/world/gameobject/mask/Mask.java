@@ -2,11 +2,11 @@ package net.joritan.jlime.world.gameobject.mask;
 
 import net.joritan.jlime.util.Texture;
 import net.joritan.jlime.util.Vector2;
-import org.jbox2d.common.Vec2;
+import net.joritan.jlime.world.gameobject.GameObject;
 
 import static org.lwjgl.opengl.GL11.*;
 
-public class Mask
+public class Mask implements GameObject
 {
     private int vertexCount;
 
@@ -14,54 +14,55 @@ public class Mask
     private Vector2[] vertices;
     private Vector2[] texcoords;
 
-    private Vector2 translation;
-    private float angle;
+    private MaskBinding binding;
 
-    public Mask(Texture texture, Vector2[] vertices, Vector2 translation, float angle, boolean isStatic)
+    private Mask(MaskBinding binding, Texture texture, Vector2[] vertices, boolean isStatic)
     {
+        this.binding = binding;
+
         vertexCount = vertices.length;
 
         this.texture = texture;
         this.vertices = vertices;
-        if(isStatic)
-        {
-            this.texcoords = new Vector2[vertexCount];
-            for (int i = 0; i < vertexCount; i++)
-                texcoords[i] = new Vector2(vertices[i].x + translation.x, -(vertices[i].y + translation.y));
-        }
-
-        this.translation = translation;
     }
 
-    public Mask(Texture texture, Vector2[] vertices, Vector2 translation, float angle)
+    public Mask(MaskBinding binding, Texture texture, Vector2[] vertices)
     {
-        this(texture, vertices, translation, angle, true);
+        this(binding, texture, vertices, true);
+        this.texcoords = new Vector2[vertexCount];
+        for (int i = 0; i < vertexCount; i++)
+            texcoords[i] = new Vector2(vertices[i].x, -(vertices[i].y));
     }
 
-    public Mask(Texture texture, Vector2[] vertices, Vector2[] texcoords, Vector2 translation, float angle)
+    public Mask(MaskBinding binding, Texture texture, Vector2[] vertices, Vector2[] texcoords)
     {
-        this(texture, vertices, translation, angle, false);
+        this(binding, texture, vertices, false);
         this.texcoords = texcoords;
     }
 
-    public void setTranslation(Vector2 translation)
+    public MaskBinding getBinding()
     {
-        this.translation = translation;
+        return binding;
     }
 
-    public void setAngle(float angle)
+    public void setBinding(MaskBinding binding)
     {
-        this.angle = angle;
+        this.binding = binding;
     }
 
+    @Override
     public void update(float timeDelta)
     {
 
     }
 
+    @Override
     public void render()
     {
         texture.bind();
+
+        Vector2 translation = binding.getPosition();
+        float angle = binding.getRotation();
 
         glTranslatef(translation.x, translation.y, 0.0f);
         glRotatef((float) Math.toDegrees(angle), 0.0f, 0.0f, 1.0f);

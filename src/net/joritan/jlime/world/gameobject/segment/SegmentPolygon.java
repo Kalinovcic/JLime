@@ -3,13 +3,13 @@ package net.joritan.jlime.world.gameobject.segment;
 import net.joritan.jlime.util.Vector2;
 import net.joritan.jlime.world.Environment;
 import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.common.Settings;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL11.glPopMatrix;
 
 public class SegmentPolygon extends Segment
 {

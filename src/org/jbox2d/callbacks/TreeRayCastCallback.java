@@ -29,7 +29,7 @@ import org.jbox2d.collision.broadphase.DynamicTree;
 // updated to rev 100
 
 /**
- * callback for {@link DynamicTree}
+ * callback for {@link org.jbox2d.collision.broadphase.DynamicTree}
  * @author Daniel Murphy
  *
  */
@@ -40,5 +40,5 @@ public interface TreeRayCastCallback {
 	 * @param nodeId
 	 * @return the fraction to the node
 	 */
-	public float raycastCallback( RayCastInput input, int nodeId);
+	public float raycastCallback(RayCastInput input, int nodeId);
 }

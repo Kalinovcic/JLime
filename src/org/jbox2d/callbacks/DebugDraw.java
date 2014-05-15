@@ -74,7 +74,7 @@ public abstract class DebugDraw {
 
 	/**
 	 * Draw a closed polygon provided in CCW order.  This implementation
-	 * uses {@link #drawSegment(Vec2, Vec2, Color3f)} to draw each side of the
+	 * uses {@link #drawSegment(org.jbox2d.common.Vec2, org.jbox2d.common.Vec2, org.jbox2d.common.Color3f)} to draw each side of the
 	 * polygon.
 	 * @param vertices
 	 * @param vertexCount
@@ -157,7 +157,7 @@ public abstract class DebugDraw {
 	 * @param x
 	 * @param y
 	 * @param scale
-	 * @see IViewportTransform#setCamera(float, float, float)
+	 * @see org.jbox2d.common.IViewportTransform#setCamera(float, float, float)
 	 */
 	public void setCamera(float x, float y, float scale){
 		viewportTransform.setCamera(x,y,scale);

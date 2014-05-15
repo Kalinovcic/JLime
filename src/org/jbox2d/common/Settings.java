@@ -41,7 +41,7 @@ public class Settings {
   public static boolean FAST_CEIL = true;
   public static boolean FAST_ROUND = true;
   public static boolean FAST_ATAN2 = true;
-  
+
   public static int CONTACT_STACK_INIT_SIZE = 10;
   public static boolean SINCOS_LUT_ENABLED = true;
   /**
@@ -190,7 +190,7 @@ public class Settings {
 
   /**
    * Friction mixing law. Feel free to customize this. TODO djm: add customization
-   * 
+   *
    * @param friction1
    * @param friction2
    * @return
@@ -201,7 +201,7 @@ public class Settings {
 
   /**
    * Restitution mixing law. Feel free to customize this. TODO djm: add customization
-   * 
+   *
    * @param restitution1
    * @param restitution2
    * @return

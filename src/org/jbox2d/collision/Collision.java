@@ -898,7 +898,7 @@ public class Collision {
       cf.indexA = 0;
       cf.typeA = (byte) ContactID.Type.VERTEX.ordinal();
       manifold.pointCount = 1;
-      manifold.type = Manifold.ManifoldType.CIRCLES;
+      manifold.type = ManifoldType.CIRCLES;
       manifold.localNormal.setZero();
       manifold.localPoint.set(P);
       // manifold.points[0].id.key = 0;
@@ -933,7 +933,7 @@ public class Collision {
       cf.indexA = 1;
       cf.typeA = (byte) ContactID.Type.VERTEX.ordinal();
       manifold.pointCount = 1;
-      manifold.type = Manifold.ManifoldType.CIRCLES;
+      manifold.type = ManifoldType.CIRCLES;
       manifold.localNormal.setZero();
       manifold.localPoint.set(P);
       // manifold.points[0].id.key = 0;
@@ -965,7 +965,7 @@ public class Collision {
     cf.indexA = 0;
     cf.typeA = (byte) ContactID.Type.FACE.ordinal();
     manifold.pointCount = 1;
-    manifold.type = Manifold.ManifoldType.FACE_A;
+    manifold.type = ManifoldType.FACE_A;
     manifold.localNormal.set(n);
     manifold.localPoint.set(A);
     // manifold.points[0].id.key = 0;
@@ -1375,7 +1375,7 @@ public class Collision {
       final ClipVertex ie1 = ie[1];
       
       if (primaryAxis.type == EPAxis.Type.EDGE_A) {
-        manifold.type = Manifold.ManifoldType.FACE_A;
+        manifold.type = ManifoldType.FACE_A;
 
         // Search for the polygon normal that is most anti-parallel to the edge normal.
         int bestIndex = 0;
@@ -1417,7 +1417,7 @@ public class Collision {
           rf.normal.set(m_normal1).negateLocal();
         }
       } else {
-        manifold.type = Manifold.ManifoldType.FACE_B;
+        manifold.type = ManifoldType.FACE_B;
 
         ie0.v.set(m_v1);
         ie0.id.indexA = 0;

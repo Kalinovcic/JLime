@@ -45,7 +45,7 @@ public class GearJointDef extends JointDef {
 
 	/**
 	 * Gear ratio.
-	 * @see GearJoint
+	 * @see org.jbox2d.dynamics.joints.GearJoint
 	 */
 	public float ratio;
 	

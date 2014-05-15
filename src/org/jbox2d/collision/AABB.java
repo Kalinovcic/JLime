@@ -186,7 +186,7 @@ public class AABB {
   }
 
   /**
-   * @deprecated please use {@link #raycast(RayCastOutput, RayCastInput, IWorldPool)} for better
+   * @deprecated please use {@link #raycast(org.jbox2d.collision.RayCastOutput, org.jbox2d.collision.RayCastInput, org.jbox2d.pooling.IWorldPool)} for better
    *             performance
    * @param output
    * @param input

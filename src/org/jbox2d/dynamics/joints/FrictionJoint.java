@@ -120,7 +120,7 @@ public class FrictionJoint extends Joint {
   }
 
   /**
-   * @see org.jbox2d.dynamics.joints.Joint#initVelocityConstraints(org.jbox2d.dynamics.TimeStep)
+   * @see Joint#initVelocityConstraints(org.jbox2d.dynamics.TimeStep)
    */
   @Override
   public void initVelocityConstraints(final SolverData data) {

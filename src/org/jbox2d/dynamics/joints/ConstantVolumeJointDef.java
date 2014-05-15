@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import org.jbox2d.dynamics.Body;
 
 /**
- * Definition for a {@link ConstantVolumeJoint}, which connects a group a bodies together so they
+ * Definition for a {@link org.jbox2d.dynamics.joints.ConstantVolumeJoint}, which connects a group a bodies together so they
  * maintain a constant volume within them.
  */
 public class ConstantVolumeJointDef extends JointDef {

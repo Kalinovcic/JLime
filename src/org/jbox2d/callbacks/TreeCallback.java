@@ -27,7 +27,7 @@ import org.jbox2d.collision.broadphase.DynamicTree;
 
 // update to rev 100
 /**
- * callback for {@link DynamicTree}
+ * callback for {@link org.jbox2d.collision.broadphase.DynamicTree}
  * @author Daniel Murphy
  *
  */
