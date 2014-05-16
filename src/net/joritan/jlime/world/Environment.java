@@ -5,6 +5,7 @@ import net.joritan.jlime.util.Texture;
 import net.joritan.jlime.util.Vector2;
 import net.joritan.jlime.world.gameobject.GameObject;
 import net.joritan.jlime.world.gameobject.entity.TE1;
+import net.joritan.jlime.world.gameobject.entity.TE2;
 import net.joritan.jlime.world.gameobject.mask.StaticMaskBinding;
 import net.joritan.jlime.world.gameobject.terrain.Platform;
 import net.joritan.jlime.world.gameobject.mask.Mask;
@@ -35,9 +36,7 @@ public class Environment
 
         objects = new HashSet<GameObject>();
 
-
-
-        addGameObject(new TE1(this));
+        addGameObject(new TE2(this));
 
         int x1 = 0;
         int y1 = -10;

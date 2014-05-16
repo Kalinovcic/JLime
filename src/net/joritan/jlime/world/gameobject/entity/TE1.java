@@ -5,6 +5,7 @@ import net.joritan.jlime.util.Texture;
 import net.joritan.jlime.util.Vector2;
 import net.joritan.jlime.world.Camera;
 import net.joritan.jlime.world.Environment;
+import net.joritan.jlime.world.gameobject.attribute.Bullet;
 import net.joritan.jlime.world.gameobject.mask.Mask;
 import net.joritan.jlime.world.gameobject.mask.SegmentMaskBinding;
 import net.joritan.jlime.world.gameobject.segment.SegmentType;

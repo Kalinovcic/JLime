@@ -393,6 +393,60 @@ public class Vector2
         y = Math.round(y);
     }
 
+    public Vector2 contain(float rangeMin, float rangeMax)
+    {
+        return new Vector2(x < rangeMin ? rangeMin : (x > rangeMax ? rangeMax : x),
+                           y < rangeMin ? rangeMin : (y > rangeMax ? rangeMax : y));
+    }
+
+    public Vector2 contain(float rangeMinX, float rangeMaxX, float rangeMinY, float rangeMaxY)
+    {
+        return new Vector2(x < rangeMinX ? rangeMinX : (x > rangeMaxX ? rangeMaxX : x),
+                           y < rangeMinY ? rangeMinY : (y > rangeMaxY ? rangeMaxY : y));
+    }
+
+    public void containLocal(float rangeMin, float rangeMax)
+    {
+        x = x < rangeMin ? rangeMin : (x > rangeMax ? rangeMax : x);
+        y = y < rangeMin ? rangeMin : (y > rangeMax ? rangeMax : y);
+    }
+
+    public void containLocal(float rangeMinX, float rangeMaxX, float rangeMinY, float rangeMaxY)
+    {
+        x = x < rangeMinX ? rangeMinX : (x > rangeMaxX ? rangeMaxX : x);
+        y = y < rangeMinY ? rangeMinY : (y > rangeMaxY ? rangeMaxY : y);
+    }
+
+    public float containedX(float rangeMin, float rangeMax)
+    {
+        return x < rangeMin ? rangeMin : (x > rangeMax ? rangeMax : x);
+    }
+
+    public Vector2 containX(float rangeMin, float rangeMax)
+    {
+        return new Vector2(x < rangeMin ? rangeMin : (x > rangeMax ? rangeMax : x), y);
+    }
+
+    public void containXLocal(float rangeMin, float rangeMax)
+    {
+        x = x < rangeMin ? rangeMin : (x > rangeMax ? rangeMax : x);
+    }
+
+    public float containedY(float rangeMin, float rangeMax)
+    {
+        return y < rangeMin ? rangeMin : (y > rangeMax ? rangeMax : y);
+    }
+
+    public Vector2 containY(float rangeMin, float rangeMax)
+    {
+        return new Vector2(x, y < rangeMin ? rangeMin : (y > rangeMax ? rangeMax : y));
+    }
+
+    public void containYLocal(float rangeMin, float rangeMax)
+    {
+        y = y < rangeMin ? rangeMin : (y > rangeMax ? rangeMax : y);
+    }
+
     public static float getX(Vector2 v)
     {
         return v.x;
