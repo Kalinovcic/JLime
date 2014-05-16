@@ -49,6 +49,66 @@ public class Vector2
         return new Vector2(x + v.x, y + v.y);
     }
 
+    public static Vector2 addX(Vector2 v1, float v2)
+    {
+        return new Vector2(v1.x + v2, v1.y);
+    }
+
+    public static Vector2 addX(Vector2 v1, Vector2 v2)
+    {
+        return new Vector2(v1.x + v2.x, v1.y);
+    }
+
+    public Vector2 addX(float v)
+    {
+        return new Vector2(x + v, y);
+    }
+
+    public Vector2 addX(Vector2 v)
+    {
+        return new Vector2(x + v.x, y);
+    }
+
+    public void addLocalX(float v)
+    {
+        x += v;
+    }
+
+    public void addLocalX(Vector2 v)
+    {
+        x += v.x;
+    }
+
+    public static Vector2 addY(Vector2 v1, float v2)
+    {
+        return new Vector2(v1.x, v1.y + v2);
+    }
+
+    public static Vector2 addY(Vector2 v1, Vector2 v2)
+    {
+        return new Vector2(v1.x, v1.y + v2.y);
+    }
+
+    public Vector2 addY(float v)
+    {
+        return new Vector2(x, y + v);
+    }
+
+    public Vector2 addY(Vector2 v)
+    {
+        return new Vector2(x, y + v.y);
+    }
+
+    public void addLocalY(float v)
+    {
+        y += v;
+    }
+
+    public void addLocalY(Vector2 v)
+    {
+        y += v.y;
+    }
+
     public void addLocal(float v)
     {
         x += v;
@@ -79,6 +139,66 @@ public class Vector2
     public Vector2 sub(Vector2 v)
     {
         return new Vector2(x - v.x, y - v.y);
+    }
+
+    public static Vector2 subX(Vector2 v1, float v2)
+    {
+        return new Vector2(v1.x - v2, v1.y);
+    }
+
+    public static Vector2 subX(Vector2 v1, Vector2 v2)
+    {
+        return new Vector2(v1.x - v2.x, v1.y);
+    }
+
+    public Vector2 subX(float v)
+    {
+        return new Vector2(x - v, y);
+    }
+
+    public Vector2 subX(Vector2 v)
+    {
+        return new Vector2(x - v.x, y);
+    }
+
+    public void subLocalX(float v)
+    {
+        x -= v;
+    }
+
+    public void subLocalX(Vector2 v)
+    {
+        x -= v.x;
+    }
+
+    public static Vector2 subY(Vector2 v1, float v2)
+    {
+        return new Vector2(v1.x, v1.y - v2);
+    }
+
+    public static Vector2 subY(Vector2 v1, Vector2 v2)
+    {
+        return new Vector2(v1.x, v1.y - v2.y);
+    }
+
+    public Vector2 subY(float v)
+    {
+        return new Vector2(x, y - v);
+    }
+
+    public Vector2 subY(Vector2 v)
+    {
+        return new Vector2(x, y - v.y);
+    }
+
+    public void subLocalY(float v)
+    {
+        y -= v;
+    }
+
+    public void subLocalY(Vector2 v)
+    {
+        y -= v.y;
     }
 
     public void subLocal(float v)
@@ -113,6 +233,66 @@ public class Vector2
         return new Vector2(x * v.x, y * v.y);
     }
 
+    public static Vector2 mulX(Vector2 v1, float v2)
+    {
+        return new Vector2(v1.x * v2, v1.y);
+    }
+
+    public static Vector2 mulX(Vector2 v1, Vector2 v2)
+    {
+        return new Vector2(v1.x * v2.x, v1.y);
+    }
+
+    public Vector2 mulX(float v)
+    {
+        return new Vector2(x * v, y);
+    }
+
+    public Vector2 mulX(Vector2 v)
+    {
+        return new Vector2(x * v.x, y);
+    }
+
+    public void mulLocalX(float v)
+    {
+        x *= v;
+    }
+
+    public void mulLocalX(Vector2 v)
+    {
+        x *= v.x;
+    }
+
+    public static Vector2 mulY(Vector2 v1, float v2)
+    {
+        return new Vector2(v1.x, v1.y * v2);
+    }
+
+    public static Vector2 mulY(Vector2 v1, Vector2 v2)
+    {
+        return new Vector2(v1.x, v1.y * v2.y);
+    }
+
+    public Vector2 mulY(float v)
+    {
+        return new Vector2(x, y * v);
+    }
+
+    public Vector2 mulY(Vector2 v)
+    {
+        return new Vector2(x, y * v.y);
+    }
+
+    public void mulLocalY(float v)
+    {
+        y *= v;
+    }
+
+    public void mulLocalY(Vector2 v)
+    {
+        y *= v.y;
+    }
+
     public void mulLocal(float v)
     {
         x *= v;
@@ -143,6 +323,66 @@ public class Vector2
     public Vector2 div(Vector2 v)
     {
         return new Vector2(x / v.x, y / v.y);
+    }
+
+    public static Vector2 divX(Vector2 v1, float v2)
+    {
+        return new Vector2(v1.x / v2, v1.y);
+    }
+
+    public static Vector2 divX(Vector2 v1, Vector2 v2)
+    {
+        return new Vector2(v1.x / v2.x, v1.y);
+    }
+
+    public Vector2 divX(float v)
+    {
+        return new Vector2(x / v, y);
+    }
+
+    public Vector2 divX(Vector2 v)
+    {
+        return new Vector2(x / v.x, y);
+    }
+
+    public void divLocalX(float v)
+    {
+        x /= v;
+    }
+
+    public void divLocalX(Vector2 v)
+    {
+        x /= v.x;
+    }
+
+    public static Vector2 divY(Vector2 v1, float v2)
+    {
+        return new Vector2(v1.x, v1.y / v2);
+    }
+
+    public static Vector2 divY(Vector2 v1, Vector2 v2)
+    {
+        return new Vector2(v1.x, v1.y / v2.y);
+    }
+
+    public Vector2 divY(float v)
+    {
+        return new Vector2(x, y / v);
+    }
+
+    public Vector2 divY(Vector2 v)
+    {
+        return new Vector2(x, y / v.y);
+    }
+
+    public void divLocalY(float v)
+    {
+        y /= v;
+    }
+
+    public void divLocalY(Vector2 v)
+    {
+        y /= v.y;
     }
 
     public void divLocal(float v)
@@ -445,6 +685,60 @@ public class Vector2
     public void containYLocal(float rangeMin, float rangeMax)
     {
         y = y < rangeMin ? rangeMin : (y > rangeMax ? rangeMax : y);
+    }
+
+    public static Vector2 contain(Vector2 v, float rangeMin, float rangeMax)
+    {
+        return new Vector2(v.x < rangeMin ? rangeMin : (v.x > rangeMax ? rangeMax : v.x),
+                           v.y < rangeMin ? rangeMin : (v.y > rangeMax ? rangeMax : v.y));
+    }
+
+    public static Vector2 contain(Vector2 v, float rangeMinX, float rangeMaxX, float rangeMinY, float rangeMaxY)
+    {
+        return new Vector2(v.x < rangeMinX ? rangeMinX : (v.x > rangeMaxX ? rangeMaxX : v.x),
+                           v.y < rangeMinY ? rangeMinY : (v.y > rangeMaxY ? rangeMaxY : v.y));
+    }
+
+    public static void containLocal(Vector2 v, float rangeMin, float rangeMax)
+    {
+        v.x = v.x < rangeMin ? rangeMin : (v.x > rangeMax ? rangeMax : v.x);
+        v.y = v.y < rangeMin ? rangeMin : (v.y > rangeMax ? rangeMax : v.y);
+    }
+
+    public static void containLocal(Vector2 v, float rangeMinX, float rangeMaxX, float rangeMinY, float rangeMaxY)
+    {
+        v.x = v.x < rangeMinX ? rangeMinX : (v.x > rangeMaxX ? rangeMaxX : v.x);
+        v.y = v.y < rangeMinY ? rangeMinY : (v.y > rangeMaxY ? rangeMaxY : v.y);
+    }
+
+    public static float containedX(Vector2 v, float rangeMin, float rangeMax)
+    {
+        return v.x < rangeMin ? rangeMin : (v.x > rangeMax ? rangeMax : v.x);
+    }
+
+    public static Vector2 containX(Vector2 v, float rangeMin, float rangeMax)
+    {
+        return new Vector2(v.x < rangeMin ? rangeMin : (v.x > rangeMax ? rangeMax : v.x), v.y);
+    }
+
+    public static void containXLocal(Vector2 v, float rangeMin, float rangeMax)
+    {
+        v.x = v.x < rangeMin ? rangeMin : (v.x > rangeMax ? rangeMax : v.x);
+    }
+
+    public static float containedY(Vector2 v, float rangeMin, float rangeMax)
+    {
+        return v.y < rangeMin ? rangeMin : (v.y > rangeMax ? rangeMax : v.y);
+    }
+
+    public static Vector2 containY(Vector2 v, float rangeMin, float rangeMax)
+    {
+        return new Vector2(v.x, v.y < rangeMin ? rangeMin : (v.y > rangeMax ? rangeMax : v.y));
+    }
+
+    public static void containYLocal(Vector2 v, float rangeMin, float rangeMax)
+    {
+        v.y = v.y < rangeMin ? rangeMin : (v.y > rangeMax ? rangeMax : v.y);
     }
 
     public static float getX(Vector2 v)
