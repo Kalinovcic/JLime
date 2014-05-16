@@ -9,7 +9,7 @@ public class FileEnvironmentManager implements EnvironmentManager
     {
         if(args.length != 1) throw new IllegalArgumentException();
         if(!(args[0] instanceof File)) throw new IllegalArgumentException();
-        File worldFile = (File) args[0];
+        //File worldFile = (File) args[0];
     }
 
     @Override
@@ -17,6 +17,6 @@ public class FileEnvironmentManager implements EnvironmentManager
     {
         if(args.length != 1) throw new IllegalArgumentException();
         if(!(args[0] instanceof File)) throw new IllegalArgumentException();
-        File worldFile = (File) args[0];
+        //File worldFile = (File) args[0];
     }
 }
