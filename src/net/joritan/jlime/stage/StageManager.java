@@ -8,7 +8,9 @@ public final class StageManager
 
     public void push(Stage stage)
     {
+        if(!stack.isEmpty()) stack.peek().onDeselection();
         stack.push(stage);
+        stage.onCreation();
         stage.onSelection();
     }
 
@@ -16,6 +18,8 @@ public final class StageManager
     {
         Stage stage = stack.pop();
         stage.onDeselection();
+        stage.onDestruction();
+        if(!stack.isEmpty()) stack.peek().onSelection();
     }
 
     public boolean hasStages()
@@ -25,11 +29,13 @@ public final class StageManager
 
     public void update(float timeDelta)
     {
-        stack.peek().update(timeDelta);
+        if(stack.isEmpty()) return;
+        stack.peek().manageUpdate(timeDelta);
     }
 
     public void render()
     {
-        stack.peek().render();
+        if(stack.isEmpty()) return;
+        stack.peek().manageRender();
     }
 }

@@ -1,5 +1,7 @@
 package net.joritan.jlime;
 
+import net.joritan.jlime.stage.StageManager;
+import net.joritan.jlime.stage.singleplayer.SingleplayerStage;
 import net.joritan.jlime.util.Texture;
 import net.joritan.jlime.util.Timer;
 import net.joritan.jlime.stage.singleplayer.world.Environment;
@@ -19,7 +21,7 @@ public class JLimeStart
     {
         try
         {
-            Display.setDisplayMode(new DisplayMode(800, 800));
+            Display.setDisplayMode(new DisplayMode(600, 600));
             Display.setTitle("Lime");
             Display.create();
             Keyboard.create();
@@ -33,16 +35,15 @@ public class JLimeStart
 
     public static void run()
     {
-        Texture.addTexture("dirt", new Texture("res/dirt2.png"));
-
-        Environment environment = new Environment();
+        StageManager manager = new StageManager();
+        manager.push(new SingleplayerStage(null, manager));
 
         Timer timer = new Timer();
         timer.reset();
 
         int frames = 0;
         long t1 = System.currentTimeMillis();
-        while (!Display.isCloseRequested())
+        while ((!Display.isCloseRequested()) && (!manager.hasStages()))
         {
             long t2 = System.currentTimeMillis();
             if ((t2 - t1) >= 1000)
@@ -55,18 +56,13 @@ public class JLimeStart
             glLoadIdentity();
 
             float delta = timer.update();
-            environment.update(delta);
-            environment.render();
+            manager.update(delta);
+            manager.render();
 
             Display.update();
-            //Display.sync(FPS);
+            Display.sync(FPS);
             frames++;
         }
-
-        environment.destroy();
-
-        Texture.getTexture("dirt").unload();
-        Texture.removeTexture("dirt");
     }
 
     public static void destroy()
