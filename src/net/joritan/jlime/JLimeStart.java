@@ -2,7 +2,7 @@ package net.joritan.jlime;
 
 import net.joritan.jlime.util.Texture;
 import net.joritan.jlime.util.Timer;
-import net.joritan.jlime.world.Environment;
+import net.joritan.jlime.stage.singleplayer.world.Environment;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -19,7 +19,7 @@ public class JLimeStart
     {
         try
         {
-            Display.setDisplayMode(new DisplayMode(500, 500));
+            Display.setDisplayMode(new DisplayMode(800, 800));
             Display.setTitle("Lime");
             Display.create();
             Keyboard.create();
